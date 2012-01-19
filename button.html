@@ -1,0 +1,23 @@
+<html>
+<head>
+<script src="http://snsk.net:8888/socket.io/lib/socket.io.js"></script>
+</head>
+<body>
+
+<button onclick="hit();" style="height:300px;width:300px">click me to play sound other device.</button>
+<audio id="hit" src="hele.wav"></audio>
+
+<div id="disp"><div></div></div>
+
+<script>
+var socket = io.connect('http://snsk.net:8888');
+socket.on('myevent', function (data) {
+    document.getElementById("hit").play();
+});
+
+function hit(){
+    socket.emit('myevent', "hit");
+}
+</script>
+
+</body></html>
